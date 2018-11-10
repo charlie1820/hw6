@@ -1,0 +1,42 @@
+package jdbc_project;
+
+import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+
+class jdbcproject{
+	public static void main(String a[]){
+		StringBuilder sb = new StringBuilder();
+		String strline = "";
+		List<String> list = new ArrayList<String>();
+		try{
+			BufferedReader br = new BufferedReader(new FileReader("part.tbl"));
+			while (strline != null){
+				strline = br.readLine();
+				sb.append(strline);
+				sb.append(System.lineSeparator());
+				strline = br.readLine();
+				if (strline == null)
+					break;
+				list.add(strline);
+			}
+			System.out.println(Arrays.toString(list.toArray()));
+			br.close();
+		}catch (FileNotFoundException e){
+			System.err.println("File Not Found");
+			
+		} catch (IOException e){
+			System.err.println("Unable to read the file.");
+		}
+	}
+}
+
+
